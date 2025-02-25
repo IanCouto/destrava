@@ -1,10 +1,17 @@
 import { useState } from "react";
 
+type User = {
+  id: string;
+  name: string;
+  email: string;
+} | null;
+
+
 export default function useUserActions() {
-  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [selectedUser, setSelectedUser] = useState<User>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const setSelectedUserForUpdate = (user: any) => {
+  const setSelectedUserForUpdate = (user: User) => {
     setSelectedUser(user);
   };
 
