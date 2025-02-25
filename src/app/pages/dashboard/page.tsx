@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import LogoutButton from "@/atoms/LogoutButton";
+import LogoutButton from "app/components/atoms/LogoutButton";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
