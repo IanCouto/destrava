@@ -1,5 +1,5 @@
 import UsersManager from "./components/molecules/UsersManager";
-import "./globals.css";
+import "@/styles/globals.css";
 
 export default function Home() {
   return (

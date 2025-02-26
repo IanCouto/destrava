@@ -2,6 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import { login, signup } from './actions'
+import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
 
@@ -12,7 +13,7 @@ export default function LoginPage() {
       <label htmlFor="password">Password:</label>
       <input id="password" name="password" type="password" required />
       <button formAction={login}>Log in</button>
-      <button formAction={signup}>Sign up</button>
+      <Button formAction={signup}>Sign up</Button>
       <div>
         <button onClick={() => signIn("google", { callbackUrl: "/dashboard" })}>Sign In with Google</button>
       </div>
