@@ -1,4 +1,4 @@
-import UsersManager from "./components/molecules/UsersManager";
+import UsersManager from "@/components/molecules/UsersManager";
 import "@/styles/globals.css";
 
 export default function Home() {
