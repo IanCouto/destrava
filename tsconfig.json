@@ -24,6 +24,7 @@
       "@/styles/*": ["app/styles/*"],
       "@/query/*": ["app/query/*"],
       "@/components/*": ["app/components/*"],
+      "@/ui/*": ["app/components/ui/*"],
       "@/hooks/*": ["app/hooks/*"],
       "@/atoms/*": ["app/components/atoms/*"],
       "@/molecules/*": ["app/components/molecules/*"],

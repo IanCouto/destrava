@@ -1,7 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import { setUser } from "@/query/user/setUser";
+import { Button } from "../ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/ui/card";
+import { Label } from "@/ui/label";
+import { Input } from "@/ui/input";
 
 interface AddUserFormProps {
   onUserAdded: () => void;
@@ -11,62 +16,59 @@ export default function AddUserForm({ onUserAdded }: AddUserFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
 
     const result = await setUser(name, email);
 
-    if (result === true) {
-      setMessage("✅ User added successfully!");
+    if (result) {
+      toast.success("✅ User added successfully!");
       setName("");
       setEmail("");
       onUserAdded();
     } else {
-      setMessage("❌ Error adding user.");
+      toast.error("❌ Error adding user.");
     }
-    
-    setTimeout(() => {
-      setMessage("");
-    }, 5000);
 
     setLoading(false);
   };
 
   return (
-    <div className="p-4 bg-white shadow-md rounded-lg max-w-md mx-auto mb-6">
-      <h2 className="text-xl font-semibold mb-4">Add User</h2>
-      <form onSubmit={handleSubmit} className="space-y-3">
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 disabled:bg-gray-400"
-          disabled={loading}
-        >
-          {loading ? "Adding..." : "Add User"}
-        </button>
-      </form>
-      {message && <p className="mt-2 text-center">{message}</p>}
-    </div>
+    <Card className="max-w-md mx-auto mb-6">
+      <CardHeader>
+        <CardTitle>Add User</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div className="grid gap-1">
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="grid gap-1">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <Button type="submit" disabled={loading}>
+            {loading ? "Adding..." : "Add User"}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 }
