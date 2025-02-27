@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/:path*',
-        destination: '/pages/:path*',
+        destination: '/:path*',
       },
     ];
   },

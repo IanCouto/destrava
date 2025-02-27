@@ -7,8 +7,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <SessionProvider>
       <html lang="en">
-        <Toaster />
-        <body>{children}</body>
+        <head>
+          <meta charSet="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>My App</title>
+        </head>
+        <body><Toaster />{children}</body>
       </html>
     </SessionProvider>
   );
