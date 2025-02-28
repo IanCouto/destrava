@@ -5,7 +5,7 @@ import { SessionProvider } from "next-auth/react";
 
 import "@/styles/globals.css";
 import { Footer } from "@/atoms/Footer";
-import { Header } from "@/atoms/header";
+import { Header } from "@/components/atoms/Header";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,12 +17,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <title>My App</title>
         </head>
         <body className="relative min-h-screen flex flex-col">
-          <Header/>
+          <Header />
           <main className="flex-grow">
             {children}
           </main>
           <Toaster />
-          <Footer/>
+          <Footer />
         </body>
       </html>
     </SessionProvider>

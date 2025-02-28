@@ -11,11 +11,10 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      // When scrolling down and past a threshold, hide the header.
+      // Hide header when scrolling down past 50px, otherwise show it
       if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
         setShowHeader(false);
       } else {
-        // Show the header when scrolling up.
         setShowHeader(true);
       }
       lastScrollY.current = currentScrollY;
@@ -26,15 +25,19 @@ export function Header() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-background shadow-md transition-transform duration-300 ${
-        showHeader ? "translate-y-0" : "-translate-y-full"
-      }`}
-    >
-      <div className="flex items-center justify-between p-4">
-        <ThemeToggle />
-        <User className="h-6 w-6 text-gray-600" />
-      </div>
-    </header>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 bg-background shadow-md transition-transform duration-300 ${
+          showHeader ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <div className="flex items-center justify-between p-4">
+          <ThemeToggle />
+          <User className="h-6 w-6 text-gray-600" />
+        </div>
+      </header>
+      {/* Placeholder div to push page content below the fixed header */}
+      <div className="h-16" />
+    </>
   );
 }
