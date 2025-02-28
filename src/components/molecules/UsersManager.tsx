@@ -12,8 +12,10 @@ export default function UsersManager() {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <AddUserForm onUserAdded={refreshUsers} />
+    <div className="w-full h-full flex flex-col">
+      <div className="mt-4">
+        <AddUserForm onUserAdded={refreshUsers} />
+      </div>
       <ShowUsers refreshCounter={refreshCounter} />
     </div>
   );

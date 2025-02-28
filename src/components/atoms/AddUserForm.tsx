@@ -24,12 +24,12 @@ export default function AddUserForm({ onUserAdded }: AddUserFormProps) {
     const result = await setUser(name, email);
 
     if (result) {
-      toast.success("✅ User added successfully!");
+      toast.success("User added successfully!");
       setName("");
       setEmail("");
       onUserAdded();
     } else {
-      toast.error("❌ Error adding user.");
+      toast.error("Error adding user.");
     }
 
     setLoading(false);

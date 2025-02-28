@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getUsers } from "@/query/user/getUsers";
 import { updateUser } from "@/query/user/updateUser";
 import { deleteUser } from "@/query/user/deleteUser";
@@ -18,6 +18,33 @@ type User = {
 
 interface ShowUsersProps {
   refreshCounter: number;
+}
+
+interface OverflowMarqueeProps {
+  text: string;
+  className?: string;
+}
+
+function OverflowMarquee({ text, className = "" }: OverflowMarqueeProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const textElement = textRef.current;
+    if (container && textElement) {
+      setIsOverflowing(textElement.scrollWidth > container.offsetWidth);
+    }
+  }, [text]);
+
+  return (
+    <div ref={containerRef} className={`max-w-[150px] overflow-hidden whitespace-nowrap ${className}`}>
+      <span ref={textRef} className={`inline-block ${isOverflowing ? "animate-marquee" : ""}`}>
+        {text}
+      </span>
+    </div>
+  );
 }
 
 export default function ShowUsers({ refreshCounter }: ShowUsersProps) {
@@ -68,7 +95,7 @@ export default function ShowUsers({ refreshCounter }: ShowUsersProps) {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
+    <div className="max-w-3xl mx-auto p-4 max-h-[1000vh] overflow-y-auto">
       <h2 className="text-2xl font-bold mb-4">User List</h2>
 
       {loading && (
@@ -97,7 +124,7 @@ export default function ShowUsers({ refreshCounter }: ShowUsersProps) {
                       onChange={(e) => setEditingUser({ ...editingUser, name: e.target.value })}
                     />
                   ) : (
-                    user.name
+                    <OverflowMarquee text={user.name} />
                   )}
                 </TableCell>
                 <TableCell>
@@ -108,7 +135,7 @@ export default function ShowUsers({ refreshCounter }: ShowUsersProps) {
                       onChange={(e) => setEditingUser({ ...editingUser, email: e.target.value })}
                     />
                   ) : (
-                    user.email
+                    <OverflowMarquee text={user.email} />
                   )}
                 </TableCell>
                 <TableCell className="text-right space-x-2">
