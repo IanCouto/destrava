@@ -1,11 +1,11 @@
 "use client";
 import { Toaster } from "@/ui/sonner";
 import { SessionProvider } from "next-auth/react";
-
-
-import "@/styles/globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Footer } from "@/atoms/Footer";
 import { Header } from "@/components/atoms/Header";
+
+import "@/styles/globals.css";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -23,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
           <Toaster />
           <Footer />
+          <SpeedInsights />
         </body>
       </html>
     </SessionProvider>

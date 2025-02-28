@@ -11,7 +11,6 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      // Hide header when scrolling down past 50px, otherwise show it
       if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
         setShowHeader(false);
       } else {

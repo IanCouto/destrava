@@ -149,14 +149,14 @@ export default function ShowUsers({ refreshCounter }: ShowUsersProps) {
                       </Button>
                     </>
                   ) : (
-                    <>
+                    <div className="flex justify-between gap-2">
                       <Button onClick={() => handleEditClick(user)} size="icon" variant="outline">
                         <Pencil className="w-4 h-4" />
                       </Button>
                       <Button onClick={() => handleDelete(user.id)} size="icon" variant="destructive">
                         <Trash2 className="w-4 h-4" />
                       </Button>
-                    </>
+                    </div>
                   )}
                 </TableCell>
               </TableRow>
