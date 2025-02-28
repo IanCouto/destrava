@@ -11,10 +11,9 @@ import { Label } from "@/components/ui/label";
 import { ThemeToggle } from "@/components/atoms/ThemeToggle";
 
 export default function ColorPick() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
-    <section className={`flex justify-center md:items-center md:pt-0 pt-8 h-screen ${isDarkMode ? "dark" : ""}`}>
+    <section className={`flex justify-center md:items-center md:pt-0 pt-8 h-screen}`}>
       <div className="px-4">
         <Card>
           <CardHeader>
