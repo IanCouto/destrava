@@ -1,0 +1,1 @@
+export type SignOutScope = 'global' | 'local' | 'others';
